@@ -36,22 +36,22 @@
       <!-- 宫格 -->
       <van-grid :column-num="3" :border="false" class="My_grid">
         <van-grid-item icon="photo-o" text="我的收藏">
-          <template #icon><van-icon name="contact" /> </template>
+          <template #icon><van-icon name="star-o" /> </template>
         </van-grid-item>
         <van-grid-item icon="photo-o" text="我的出租">
-          <template #icon><van-icon name="contact" /> </template>
+          <template #icon><van-icon name="wap-home-o" /> </template>
         </van-grid-item>
         <van-grid-item icon="photo-o" text="看房记录">
-          <template #icon><van-icon name="contact" /> </template>
+          <template #icon><van-icon name="underway-o" /> </template>
         </van-grid-item>
         <van-grid-item icon="photo-o" text="成为房主">
-          <template #icon><van-icon name="contact" /> </template>
+          <template #icon><van-icon name="idcard" /> </template>
         </van-grid-item>
         <van-grid-item icon="photo-o" text="个人资料">
           <template #icon><van-icon name="contact" /> </template>
         </van-grid-item>
         <van-grid-item icon="photo-o" text="联系我们">
-          <template #icon><van-icon name="contact" /> </template>
+          <template #icon><van-icon name="phone-o" /> </template>
         </van-grid-item>
       </van-grid>
     </div>
