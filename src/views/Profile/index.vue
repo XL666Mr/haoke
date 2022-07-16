@@ -17,7 +17,7 @@
             src="http://liufusong.top:8080/img/profile/avatar.png"
             alt=""
           />
-          <div class="My_name">游客</div>
+          <div class="My_name">{{userName}}</div>
         </div>
         <!-- 登录按钮 -->
         <div class="My_user">
@@ -35,7 +35,7 @@
     <div style="margin-top: 20px">
       <!-- 宫格 -->
       <van-grid :column-num="3" :border="false" class="My_grid">
-        <van-grid-item icon="photo-o" text="我的收藏">
+        <van-grid-item icon="photo-o" text="我的收藏" @click="toMyfavorate">
           <template #icon><van-icon name="star-o" /> </template>
         </van-grid-item>
         <van-grid-item icon="photo-o" text="我的出租">
@@ -67,11 +67,22 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      userName: this.$store.state.Username
+    }
+  },
+  methods: {
+    toMyfavorate () {
+      this.$router.push('/favorate')
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
-.My_title{
+.My_title {
   min-height: 300px;
   position: relative;
   .My_bg {
@@ -82,7 +93,7 @@ export default {}
     background: #fff;
     width: 80%;
     height: 82%;
-    top:56%;
+    top: 56%;
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 0 10px 3px #ddd;
@@ -90,7 +101,7 @@ export default {}
     padding: 0 20px;
     text-align: center;
     font-size: 13px;
-    .My_myIcon{
+    .My_myIcon {
       position: relative;
       transform: translateY(-50%);
       border-radius: 50%;
@@ -103,13 +114,13 @@ export default {}
         width: 100%;
         border-radius: 50%;
       }
-      .My_name{
+      .My_name {
         margin-top: 50px;
         margin-bottom: 10px;
       }
     }
     .My_user {
-        margin-top: -25px;
+      margin-top: -25px;
       .my_button {
         border-radius: 13px;
         width: 140px;
@@ -117,7 +128,7 @@ export default {}
     }
   }
 }
-.My_grid{
+.My_grid {
   margin-top: 230px;
   margin-bottom: 55px;
 }
