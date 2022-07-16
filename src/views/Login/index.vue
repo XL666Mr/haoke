@@ -42,13 +42,15 @@ export default {
     }
   },
   methods: {
-    async onSubmit (values) {
-      console.log(values)
-      const res = await login(this.username, this.password)
-      console.log(res)
-      if (res.data.status === 200) {
+    async onSubmit () {
+      try {
+        const res = await login(this.username, this.password)
+        this.$store.commit('setToken', res.data.body)
+        console.log(res)
+        this.$store.commit('setName', this.username)
+        this.$router.push('/home/profile')
         return this.$toast.success('登录成功')
-      } else {
+      } catch (error) {
         return this.$toast.fail('登录失败')
       }
     },
