@@ -86,12 +86,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  data () {
-    return {
-      userName: this.$store.state.Username
-=======
 import { getUserInfo, userLogout } from '@/api'
 import { URL } from '@/utils/url'
 export default {
@@ -125,7 +119,6 @@ export default {
   computed: {
     isLogin() {
       return !!this.$store.state.token.token
->>>>>>> favorate
     }
   }
 }
@@ -142,13 +135,8 @@ export default {
     position: absolute;
     background: #fff;
     width: 80%;
-<<<<<<< HEAD
-    height: 82%;
-    top: 56%;
-=======
     height: 55%;
     top: 45%;
->>>>>>> favorate
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 0 10px 3px #ddd;
@@ -174,8 +162,6 @@ export default {
     }
     .My_user {
       margin-top: -25px;
-<<<<<<< HEAD
-=======
       .my_button {
         border-radius: 13px;
         width: 140px;
@@ -213,7 +199,6 @@ export default {
     }
     .My_user {
       margin-top: -25px;
->>>>>>> favorate
       .my_button {
         border-radius: 13px;
         width: 140px;
@@ -222,10 +207,6 @@ export default {
   }
 }
 .My_grid {
-<<<<<<< HEAD
-  margin-top: 230px;
-=======
->>>>>>> favorate
   margin-bottom: 55px;
 }
 .My_ad {

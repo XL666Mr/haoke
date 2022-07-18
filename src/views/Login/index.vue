@@ -45,14 +45,8 @@ export default {
     async onSubmit () {
       try {
         const res = await login(this.username, this.password)
-<<<<<<< HEAD
-        this.$store.commit('setToken', res.data.body)
-        console.log(res)
-        this.$store.commit('setName', this.username)
-=======
         console.log(res)
         this.$store.commit('setTokens', res.data.body)
->>>>>>> favorate
         this.$router.push('/home/profile')
         return this.$toast.success('登录成功')
       } catch (error) {
