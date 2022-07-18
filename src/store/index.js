@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+<<<<<<< HEAD
     token: getToken() || {},
     Username: ''
   },
@@ -15,6 +16,14 @@ export default new Vuex.Store({
     },
     setName (state, val) {
       state.Username = val
+=======
+    token: getToken() || {}
+  },
+  mutations: {
+    setTokens(state, payload) {
+      setToken(payload)
+      state.token = payload
+>>>>>>> favorate
     }
   }
 })
