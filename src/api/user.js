@@ -13,3 +13,25 @@ export const getList = () => {
     url: '/user/favorites'
   })
 }
+
+export const getUserInfo = () => {
+  return request({
+    method: 'GET',
+    url: '/user'
+  })
+}
+export const userLogout = () => {
+  return request({
+    method: 'POST',
+    url: '/user/logout'
+  })
+}
+export const getCityList = () => {
+  return request({
+    url: '/area/city',
+    method: 'GET',
+    params: {
+      level: 1
+    }
+  })
+}

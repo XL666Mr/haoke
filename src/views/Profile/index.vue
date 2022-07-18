@@ -3,13 +3,36 @@
     <!-- 头部 -->
     <div class="My_title">
       <!-- 背景图 -->
+      <img class="My_bg" :src="url + userInfo.avatar" alt="" v-if="isLogin" />
       <img
         class="My_bg"
         src="http://liufusong.top:8080/img/profile/bg.png"
         alt=""
+        style="margin-bottom:100px"
+        v-else
       />
-      <!-- 登录模块 -->
-      <div class="My_info">
+
+      <!-- 登录 -->
+      <div class="My_info" v-if="isLogin">
+        <!-- 头像 -->
+        <div class="My_myIcon">
+          <img class="My_avatar" :src="url + userInfo.avatar" />
+          <div class="My_name">{{ userInfo.nickname }}</div>
+        </div>
+        <!-- 登录按钮 -->
+        <div class="My_user">
+          <van-button
+            type="primary"
+            color="#21b97a"
+            class="my_button"
+            size="small"
+            @click="goBack"
+            >退出</van-button
+          >
+        </div>
+      </div>
+      <!-- 未登录 -->
+      <div class="My_info1" v-else>
         <!-- 头像 -->
         <div class="My_myIcon">
           <img
@@ -17,16 +40,16 @@
             src="http://liufusong.top:8080/img/profile/avatar.png"
             alt=""
           />
-          <div class="My_name">{{userName}}</div>
+          <div class="My_name">游客</div>
         </div>
         <!-- 登录按钮 -->
         <div class="My_user">
           <van-button
             type="primary"
-            to="/login"
             color="#21b97a"
             class="my_button"
             size="small"
+            to="/login"
             >去登录</van-button
           >
         </div>
@@ -57,25 +80,45 @@
     </div>
     <!-- 广告 -->
     <div class="My_ad">
-      <img
-        class="advertise"
-        src="http://liufusong.top:8080/img/profile/join.png"
-        alt=""
-      />
+      <img class="advertise" :src="url + '/img/profile/join.png'" alt="" />
     </div>
   </div>
 </template>
 
 <script>
+import { getUserInfo, userLogout } from '@/api'
+import { URL } from '@/utils/url'
 export default {
-  data () {
+  data() {
     return {
-      userName: this.$store.state.Username
+      userInfo: {},
+      url: URL
     }
   },
   methods: {
-    toMyfavorate () {
+    toMyfavorate() {
       this.$router.push('/favorate')
+    },
+    async getUserInfo() {
+      const res = await getUserInfo()
+      this.userInfo = res.data.body
+      console.log(res)
+    },
+    async goBack() {
+      try {
+        console.log(this.isLogin)
+        const res = await userLogout()
+        this.$store.commit('setTokens', {})
+        console.log(res)
+      } catch (error) {}
+    }
+  },
+  created() {
+    this.getUserInfo()
+  },
+  computed: {
+    isLogin() {
+      return !!this.$store.state.token.token
     }
   }
 }
@@ -92,13 +135,48 @@ export default {
     position: absolute;
     background: #fff;
     width: 80%;
-    height: 82%;
-    top: 56%;
+    height: 55%;
+    top: 45%;
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0 0 10px 3px #ddd;
-    margin: 50px auto 0;
-    padding: 0 20px;
+    text-align: center;
+    font-size: 13px;
+    .My_myIcon {
+      position: relative;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      width: 115px;
+      height: 115px;
+      border: 10px solid #f5f5f5;
+      display: inline-block;
+      box-shadow: 0 2px 2px #bdbdbd;
+      .My_avatar {
+        width: 100%;
+        border-radius: 50%;
+      }
+      .My_name {
+        margin-top: 50px;
+        margin-bottom: 10px;
+      }
+    }
+    .My_user {
+      margin-top: -25px;
+      .my_button {
+        border-radius: 13px;
+        width: 140px;
+      }
+    }
+  }
+  .My_info1 {
+    position: absolute;
+    background: #fff;
+    width: 80%;
+    height: 55%;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px 3px #ddd;
     text-align: center;
     font-size: 13px;
     .My_myIcon {
@@ -129,7 +207,6 @@ export default {
   }
 }
 .My_grid {
-  margin-top: 230px;
   margin-bottom: 55px;
 }
 .My_ad {

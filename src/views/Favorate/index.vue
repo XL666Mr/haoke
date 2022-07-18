@@ -12,13 +12,20 @@
         <van-cell v-for="(item, index) in list" :key="index" class="Fa_grid">
           <div class="Fa_template">
             <div class="Fa_img">
-              <img :src="url+item.houseImg" />
+              <img :src="url + item.houseImg" />
             </div>
             <div class="Fa_right">
-              <div><h3>{{item.title}}</h3></div>
-              <div class="Fa_text">{{item.desc}}</div>
-              <div class="Fa_site"><span v-for="(obj,i) in item.tags" :key="i">{{obj}}</span></div>
-              <div class="Fa_price"><span>{{item.price}}</span>元/月</div>
+              <div>
+                <h3>{{ item.title }}</h3>
+              </div>
+              <div class="Fa_text">{{ item.desc }}</div>
+              <div class="Fa_site">
+                <span v-for="(obj, i) in item.tags" :key="i">{{ obj }}</span>
+              </div>
+              <div class="Fa_price">
+                <span>{{ item.price }}</span
+                >元/月
+              </div>
             </div>
           </div>
         </van-cell>
@@ -29,11 +36,12 @@
 
 <script>
 import { getList } from '@/api/user'
+import { URL } from '@/utils/url'
 export default {
   data() {
     return {
       list: [],
-      url: 'http://liufusong.top:8080'
+      url: URL
     }
   },
   created() {

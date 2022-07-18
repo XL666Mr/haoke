@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { login } from '@/api/user'
+import { login } from '@/api'
 export default {
   data () {
     return {
@@ -45,9 +45,8 @@ export default {
     async onSubmit () {
       try {
         const res = await login(this.username, this.password)
-        this.$store.commit('setToken', res.data.body)
         console.log(res)
-        this.$store.commit('setName', this.username)
+        this.$store.commit('setTokens', res.data.body)
         this.$router.push('/home/profile')
         return this.$toast.success('登录成功')
       } catch (error) {

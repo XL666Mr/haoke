@@ -1,7 +1,8 @@
 import axios from 'axios'
 import store from '@/store'
+import { URL } from './url'
 const request = axios.create({
-  baseURL: 'http://liufusong.top:8080'
+  baseURL: URL
 })
 request.interceptors.request.use((config) => {
   config.headers.authorization = store.state.token.token

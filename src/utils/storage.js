@@ -1,12 +1,14 @@
 class Storage {
-  set (tokenName, val) {
+  set(tokenName, val) {
     if (typeof val === 'object') {
+      console.log(val)
       val = JSON.stringify(val)
+      console.log(val)
     }
     localStorage.setItem(tokenName, val)
   }
 
-  get (tokenName) {
+  get(tokenName) {
     const val = localStorage.getItem(tokenName)
     try {
       return JSON.parse(val)
@@ -15,7 +17,7 @@ class Storage {
     }
   }
 
-  remove (tokenName) {
+  remove(tokenName) {
     localStorage.removeItem(tokenName)
   }
 }
